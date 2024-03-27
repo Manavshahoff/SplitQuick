@@ -1,30 +1,33 @@
-import React from 'react'
-import { BrowserRouter as Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle signup submission logic here
+  };
+
   return (
-    <div class="form-container">
+    <div className="form-container">
         <h1>SplitQuick</h1>
-        <form id="form">
-            <div class="form-group">
-                <label for="name">Name</label>
+        <form id="form" onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="name">Name</label>
                 <input type="text" id="name" name="name" required />
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
+            <div className="form-group">
+                <label htmlFor="email">Email</label>
                 <input type="email" id="email" name="email" required />
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
+            <div className="form-group">
+                <label htmlFor="password">Password</label>
                 <input type="password" id="password" name="password" required />
             </div>
             <button type="submit">Signup</button>
-            <p>Already have account? <Link to="/Login">login here.</Link></p>
+            <p>Already have an account? <Link to="/Pages/login">Login here.</Link></p>
         </form>
-        </div>
+    </div>
   );
 }
 
 export default Signup;
-
-

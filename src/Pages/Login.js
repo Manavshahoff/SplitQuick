@@ -1,30 +1,31 @@
-import React from 'react'
-// import { BrowserRouter as Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom'; // Corrected import for future use
 
 const Login = () => {
+  // Example form submission handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+  };
+
   return (
-    <div class="form-container">
+    <div className="form-container">
         <h1>SplitQuick</h1>
-        <form id="form">
-            <div class="form-group">
-                <label for="name">Name</label>
+        <form id="form" onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="name">Name</label>
                 <input type="text" id="name" name="name" required />
             </div>
-            {/* <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required />
-            </div> */}
-            <div class="form-group">
-                <label for="password">Password</label>
+            <div className="form-group">
+                <label htmlFor="password">Password</label>
                 <input type="password" id="password" name="password" required />
             </div>
             <button type="submit">Login</button>
-            {/* <p>Don't have account? <Link to="/signup">Sign up here.</Link></p> */}
+            {/* Uncomment and use when navigation is needed */}
+            <p>Don't have an account? <Link to="/Pages/signup">Sign up here.</Link></p>
         </form>
     </div>
   )
 }
 
 export default Login;
-
-

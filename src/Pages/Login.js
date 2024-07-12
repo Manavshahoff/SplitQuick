@@ -1,31 +1,60 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Corrected import for future use
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
 
-const Login = () => {
-  // Example form submission handler
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-  };
 
+function Login() {
+
+  const history=useNavigate();
+
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+
+  async function submit(e){
+      e.preventDefault();
+
+      try{
+
+          await axios.post("http://localhost:3000/",{
+              email,password
+          })
+          .then(res=>{
+              if(res.data==="exist"){
+                  history("/home",{state:{id:email}})
+              }
+              else if(res.data==="notexist"){
+                  alert("User have not sign up")
+              }
+          })
+          .catch(e=>{
+              alert("wrong details")
+              console.log(e);
+          })
+
+      }
+      catch(e){
+          console.log(e);
+
+      }
+
+  }
   return (
     <div className="form-container">
         <h1>SplitQuick</h1>
-        <form id="form" onSubmit={handleSubmit}>
+        <form id="form" action = "POST">
             <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" required />
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" name="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" />
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" name="password" required />
+                <input type="password" id="password"  name="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" />
             </div>
-            <button type="submit">Login</button>
-            {/* Uncomment and use when navigation is needed */}
-            <p>Don't have an account? <Link to="/Pages/signup">Sign up here.</Link></p>
+            <button type="submit" onClick={submit}>Login</button>
+            <p>Don't have an account? <Link to="/signup">Sign up here.</Link></p> {/* Ensure your route is correct */}
         </form>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

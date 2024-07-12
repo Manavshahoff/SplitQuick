@@ -1,22 +1,21 @@
-import React from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Corrected import
-import Login from './Pages/Login';
-import Signup from './Pages/Signup';
+// import './App.css'
+import Home from "./Pages/Home"
+import Login from "./Pages/Login"
+import Signup from "./Pages/Signup"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
+
 function App() {
   return (
-    
-    <Router>
-    <div>
-      {/* Route configuration */}
-      <Routes>
-        <Route path="/Pages/Login" element={<Login />} />
-        <Route path="/Pages/Signup" element={<Signup />} />
-        <Route path="/" element={<Login />} />
-
-      </Routes>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login/>}/>
+          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/home" element={<Home/>}/>
+        </Routes>
+      </Router>
     </div>
-  </Router>
   );
 }
 

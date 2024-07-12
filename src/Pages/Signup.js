@@ -15,15 +15,15 @@ function Signup() {
 
       try{
 
-          await axios.post("http://localhost:3000/signup",{
+          await axios.post("http://localhost:8000/Signup",{
               name,email,password
           })
           .then(res=>{
-              if(res.data==="exist"){
+              if(res.data ==="exist"){
                   alert("User already exists")
               }
-              else if(res.data==="notexist"){
-                  history("/home",{state:{id:email}})
+              else if(res.data ==="notexist"){
+                  history("/home",{state:{id:name}})
               }
           })
           .catch(e=>{
@@ -56,7 +56,7 @@ function Signup() {
                 <input type="password" id="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" />
             </div>
             <button type="submit" onClick={submit}>Signup</button>
-            <p>Already have an account? <Link to="/login">Login here.</Link></p>
+            <p>Already have an account? <Link to="/Login">Login here.</Link></p>
         </form>
     </div>
   );

@@ -1,71 +1,183 @@
-/* App.css */
-
-.form-container {
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
-  color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.form-container h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #fff;
-}
-
-.form-container form {
+/* Ensure html and body take up full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
-  margin-bottom: 20px;
+/* Main container for Friends component */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.form-group label {
-  margin-bottom: 5px;
-  display: block;
+/* Header styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: black;
+  border-radius: 10px;
 }
 
-.form-group input {
+/* Styling for header text */
+.header-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Search container styling */
+.search-container {
+  padding: 20px;
+}
+
+/* Styling for search input */
+.search-input {
+  height: 40px;
   width: 95%;
   padding: 10px;
   border: none;
   border-radius: 5px;
   margin-top: 5px;
+  background: linear-gradient(90deg, #5de0d6, #004aad);
 }
 
-button {
-  background: #56ab2f; /* Fallback for older browsers */
-  background: -webkit-linear-gradient(to right, #a8e063, #56ab2f); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* Content area to fill remaining space */
+.content {
+  flex: 1;
+}
+
+/* List of friends */
+.list {
+  flex: 1;
+}
+
+/* Individual item styling */
+.item-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Avatar styling */
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4a90e2;
   color: white;
-  padding: 10px;
-  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Icon styling */
+.icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Summary section styling */
+.summary {
+  display: flex;
+  align-items: center;
+}
+
+/* Summary item styling */
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 50px;
+}
+
+/* Name styling */
+.name {
+  flex: 1;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+/* Amount owed styling */
+.amount-owe {
+  font-size: 18px;
+  color: green;
+}
+
+/* Amount owed styling */
+.amount-owed {
+  font-size: 18px;
+  color: red;
+}
+
+/* Add friend button styling */
+.addFriend {
+  font-size: 18px;
+  color: #4a90e2;
+  background-color: transparent;
+  padding: 10px 20px;
   border-radius: 5px;
-  margin-top: 10px;
   cursor: pointer;
-  width: 50%;
-  align-self: center;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px;
 }
 
-button:hover {
-  opacity: 0.8;
+.addFriend:hover {
+  background-color: #4a90e2;
+  color: white;
 }
 
-p {
-  text-align: center;
-  margin-top: 20px;
+/* Floating action button styling */
+.fab {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  background: linear-gradient(to right, #a8e063, #56ab2f);
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
-a {
-  color: #50fa7b;
-  text-decoration: none;
+.fab-text {
+  color: #fff;
+  font-size: 30px;
+  line-height: 40px;
 }
 
-a:hover {
-  text-decoration: underline;
+/* Footer styling */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  width: 100%;
+  background: linear-gradient(90deg, #5de0d6, #004aad);
+  position: sticky;
+  bottom: 0;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-icon {
+  width: 24px;
+  height: 24px;
 }

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import Avatar from './Avatar'; // Adjust the import path if necessary
 
 function Friends() {
   const [friends, setFriends] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const email = location.state?.email || localStorage.getItem('email');
@@ -25,11 +27,25 @@ function Friends() {
     fetchFriends();
   }, [email]);
 
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchInput(value);
+
+    if (value.length > 0) {
+      const filteredSuggestions = friends.filter(friend => 
+        friend.name.toLowerCase().startsWith(value.toLowerCase())
+      );
+      setSuggestions(filteredSuggestions);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
   const renderItem = (friend) => (
     <div className="item-container" key={friend.email}>
       <Avatar name={friend.name} />
       <span className="name">{friend.name}</span>
-      <span className="amount">{friend.amount || "$0.00"}</span> {/* Adjust the amount logic as per your data */}
+      <span className="amount">{friend.amount || "$0.00"}</span>
     </div>
   );
 
@@ -41,42 +57,60 @@ function Friends() {
         <div className="summary">
           <div className="summary-item">
             <span className="header-text">Owed</span>
-            <span className="amount-owed">$1</span> {/* Adjust the amount logic as per your data */}
+            <span className="amount-owed">$1</span>
           </div>
           <div className="summary-item">
             <span className="header-text">Owe</span>
-            <span className="amount-owe">$2</span> {/* Adjust the amount logic as per your data */}
+            <span className="amount-owe">$2</span>
           </div>
+          <button className="add" onClick={() => navigate("/addfriend", { state: { email: email } })}>
+            Add Friends
+          </button>
         </div>
-        <button className="addFriend" onClick={() => navigate("/addfriend", { state: { email: email } })}>
-          Add Friends
-        </button>
       </div>
       <div className="content">
         <div className="search-container">
-          <input className="search-input" placeholder="Search" />
+          <input 
+            className="search-input" 
+            placeholder="Search" 
+            value={searchInput} 
+            onChange={handleSearch} 
+          />
+          {suggestions.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestions.map((friend, index) => (
+                <li key={index} className="suggestion-item">
+                  {friend.name}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <div className="list">
           {friends.map(renderItem)}
         </div>
       </div>
+        <button className="fab" onClick={() => navigate("/expenseselection", { state: { email } })}>
+        <span className="fab-text">+</span>
+        </button>
+
       <div className="footer">
-        <div className="footer-item">
+        <Link to="/friends" className="footer-item">
           <Avatar iconType="user" />
           <span>Friends</span>
-        </div>
-        <div className="footer-item">
+        </Link>
+        <Link to="/groups" className="footer-item">
           <Avatar iconType="group" />
           <span>Groups</span>
-        </div>
-        <div className="footer-item">
+        </Link>
+        <Link to="/profile" className="footer-item">
           <Avatar iconType="profile" />
           <span>Profile</span>
-        </div>
-        <div className="footer-item">
+        </Link>
+        <Link to="/activity" className="footer-item">
           <Avatar iconType="activity" />
           <span>Activity</span>
-        </div>
+        </Link>
       </div>
     </div>
   );

@@ -46,7 +46,7 @@ function Login() {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" onChange={(e) => { setPassword(e.target.value); }} placeholder="Password" required />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className='Loginbutton'>Login</button>
         <p>Don't have an account? <Link to="/signup">Sign up here.</Link></p>
       </form>
     </div>

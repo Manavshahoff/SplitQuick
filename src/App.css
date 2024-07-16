@@ -1,4 +1,4 @@
-/* Ensure html and body take up full height */
+/* General Styles */
 html, body {
   height: 100%;
   margin: 0;
@@ -33,6 +33,7 @@ html, body {
 /* Search container styling */
 .search-container {
   padding: 20px;
+  align-self: center;
 }
 
 /* Styling for search input */
@@ -51,7 +52,7 @@ html, body {
   flex: 1;
 }
 
-/* List of friends */
+/* List of friends or group members */
 .list {
   flex: 1;
 }
@@ -119,8 +120,8 @@ html, body {
   color: red;
 }
 
-/* Add friend button styling */
-.addFriend {
+/* Add friend and Group button styling */
+.add {
   font-size: 18px;
   color: #4a90e2;
   background-color: transparent;
@@ -131,8 +132,8 @@ html, body {
   margin-top: 10px;
 }
 
-.addFriend:hover {
-  background-color: #4a90e2;
+.add:hover {
+  background-color: #4a90e2; /* Adjust the color as needed */
   color: white;
 }
 
@@ -180,4 +181,235 @@ html, body {
 .footer-icon {
   width: 24px;
   height: 24px;
+}
+
+/* Form container styling for login and signup pages */
+.form-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: linear-gradient(90deg, #5de0d6, #004aad);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-group input {
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+/* Button styling for login and signup forms */
+.Loginbutton, .signupbutton {
+  background: #56ab2f; 
+  background: -webkit-linear-gradient(to right, #a8e063, #56ab2f); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 50%;
+  align-self: center;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Paragraph and link styling */
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+a {
+  color: #50fa7b;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Suggestions list styling */
+.suggestions-list {
+  border: 1px solid #ccc;
+  background-color: white;
+  position: absolute;
+  z-index: 1000;
+  width: 95%;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Group Details Page Specific Styles */
+.group-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.group-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.back-button {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.group-name {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.no-expenses {
+  color: #888;
+}
+
+.group-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.group-button {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.group-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+.add-members-button .icon, .share-link-button .icon {
+  margin-right: 5px;
+}
+
+.group-footer {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(90deg, #5de0d6, #004aad);
+  padding: 10px 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.footer-item span {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.add-members-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* .add-member{
+  font-size: 18px;
+  color: #4a90e2;
+  background-color: transparent;
+  padding: 10px 20px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px;
+}
+
+.share-link{
+  font-size: 18px;
+  color: #4a90e2;
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px;
+  margin-right: 5px;
+} */
+
+.fab {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  background: linear-gradient(to right, #a8e063, #56ab2f);
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.fab-text {
+  color: #fff;
+  font-size: 30px;
+  line-height: 40px;
 }

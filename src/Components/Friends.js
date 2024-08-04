@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import Avatar from './Avatar'; // Adjust the import path if necessary
+import Avatar from './Avatar';
 
 function Friends() {
   const [friends, setFriends] = useState([]);
@@ -12,18 +12,16 @@ function Friends() {
   const email = location.state?.email || localStorage.getItem('email');
   const name = location.state?.name || localStorage.getItem('name');
 
-  useEffect(() => {
-    async function fetchFriends() {
-      try {
-        const response = await axios.post("http://localhost:8000/getFriends", {
-          email: email
-        });
-        setFriends(response.data.friends);
-      } catch (e) {
-        console.log(e);
-      }
+  const fetchFriends = async () => {
+    try {
+      const response = await axios.post("http://localhost:8000/getFriends", { email });
+      setFriends(response.data.friends);
+    } catch (e) {
+      console.log(e);
     }
+  };
 
+  useEffect(() => {
     fetchFriends();
   }, [email]);
 
@@ -32,7 +30,7 @@ function Friends() {
     setSearchInput(value);
 
     if (value.length > 0) {
-      const filteredSuggestions = friends.filter(friend => 
+      const filteredSuggestions = friends.filter(friend =>
         friend.name.toLowerCase().startsWith(value.toLowerCase())
       );
       setSuggestions(filteredSuggestions);
@@ -45,7 +43,9 @@ function Friends() {
     <div className="item-container" key={friend.email}>
       <Avatar name={friend.name} />
       <span className="name">{friend.name}</span>
-      <span className="amount">{friend.amount || "$0.00"}</span>
+      <span className={`amount ${friend.balance >= 0 ? 'amount-owe' : 'amount-owed'}`}>
+        ${Math.abs(friend.balance).toFixed(2)}
+      </span>
     </div>
   );
 
@@ -57,11 +57,15 @@ function Friends() {
         <div className="summary">
           <div className="summary-item">
             <span className="header-text">Owed</span>
-            <span className="amount-owed">$1</span>
+            <span className="amount-owed">
+              ${friends.reduce((acc, friend) => friend.balance < 0 ? acc - friend.balance : acc, 0).toFixed(2)}
+            </span>
           </div>
           <div className="summary-item">
             <span className="header-text">Owe</span>
-            <span className="amount-owe">$2</span>
+            <span className="amount-owe">
+              ${friends.reduce((acc, friend) => friend.balance > 0 ? acc + friend.balance : acc, 0).toFixed(2)}
+            </span>
           </div>
           <button className="add" onClick={() => navigate("/addfriend", { state: { email: email } })}>
             Add Friends
@@ -70,11 +74,11 @@ function Friends() {
       </div>
       <div className="content">
         <div className="search-container">
-          <input 
-            className="search-input" 
-            placeholder="Search" 
-            value={searchInput} 
-            onChange={handleSearch} 
+          <input
+            className="search-input"
+            placeholder="Search"
+            value={searchInput}
+            onChange={handleSearch}
           />
           {suggestions.length > 0 && (
             <ul className="suggestions-list">
@@ -90,11 +94,10 @@ function Friends() {
           {friends.map(renderItem)}
         </div>
       </div>
-        <button className="fab" onClick={() => navigate("/expenseselection", { state: { email } })}>
+      <button className="fab" onClick={() => navigate("/expenseselection", { state: { email } })}>
         <span className="fab-text">+</span>
-        </button>
-
-      <div className="footer">
+      </button>
+      <div className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
         <Link to="/friends" className="footer-item">
           <Avatar iconType="user" />
           <span>Friends</span>

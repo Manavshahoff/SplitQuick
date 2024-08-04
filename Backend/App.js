@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { User, Group } = require("./Mongo");
+const { User, Group, Expense } = require("./Mongo");
 const app = express();
 
 app.use(express.json());
@@ -62,7 +62,11 @@ app.post("/addFriend", async (req, res) => {
 
     await User.updateOne(
       { email: userEmail },
-      { $addToSet: { friends: { name: friendName, number: friendNumber, email: friendEmail } } }
+      { $addToSet: { friends: { name: friendName, number: friendNumber, email: friendEmail, balance: 0 } } }
+    );
+    await User.updateOne(
+      { email: friendEmail },
+      { $addToSet: { friends: { name: user.name, email: userEmail, balance: 0 } } }
     );
     res.json("success");
   } catch (e) {
@@ -155,23 +159,135 @@ app.post("/getGroups", async (req, res) => {
 });
 
 app.post("/addExpense", async (req, res) => {
-    const { email, expenseName, amount, selectedFriends, selectedGroups } = req.body;
-  
-    try {
-      // You can modify this logic to suit how you want to store expenses
-      console.log(`User: ${email} added an expense: ${expenseName} with amount: ${amount}`);
-      console.log(`Friends involved: ${selectedFriends}`);
-      console.log(`Groups involved: ${selectedGroups}`);
-  
-      // Implement the actual logic to save the expense in your database
-  
-      res.json("success");
-    } catch (e) {
-      console.error(e);
-      res.json("error");
+  const { email, expenseName, amount, selectedFriends, selectedGroups, splitMethod, customShares } = req.body;
+
+  try {
+    let participants =  selectedFriends.includes(email) ? [...selectedFriends] : [email, ...selectedFriends];
+
+    for (const groupId of selectedGroups) {
+      const group = await Group.findById(groupId);
+      if (group) {
+        participants = [...participants, ...group.members.map((member) => member.email)];
+      }
     }
-  });
-  
+
+    const uniqueParticipants = [...new Set(participants)]; // Ensure uniqueness
+    console.log("Unique Participants:", uniqueParticipants); // Debugging: log unique participants
+    const totalParticipants = uniqueParticipants.length;
+
+    // Handle custom shares and replace dots in email addresses for map keys
+    let owedAmounts;
+    if (customShares && Object.keys(customShares).length > 0) {
+      const totalShares = Object.values(customShares).reduce((a, b) => a + b, 0);
+      owedAmounts = uniqueParticipants.reduce((acc, participant) => {
+        const key = participant.replace(/\./g, '_');
+        acc[key] = customShares[participant] ? (customShares[participant] / totalShares) * parseFloat(amount) : 0;
+        return acc;
+      }, {});
+    } else {
+      owedAmounts = uniqueParticipants.reduce((acc, participant) => {
+        acc[participant.replace(/\./g, '_')] = parseFloat(amount) / totalParticipants;
+        return acc;
+      }, {});
+    }
+
+    const expense = new Expense({
+      expenseName,
+      amount: parseFloat(amount),
+      createdBy: email,
+      participants: uniqueParticipants,
+      splitMethod,
+      date: new Date(), // Ensure the correct date is set
+      groupName: selectedGroups.length > 0 ? selectedGroups[0] : null,
+      customShares: owedAmounts,
+    });
+
+    await expense.save();
+    console.log('Expense saved:', expense);
+
+    // Update each participant's balance and activities
+    const updates = uniqueParticipants.map(async (participant) => {
+      const key = participant.replace(/\./g, '_');
+      const balanceUpdate = owedAmounts[key];
+
+      await User.updateOne(
+        { email: participant },
+        {
+          $push: { activities: expense._id },
+          // $inc: { 'friends.$[friend].balance': balanceUpdate },
+        },
+        // { arrayFilters: [{ 'friend.email': email }] }
+      );
+
+      for (const otherParticipant of uniqueParticipants) {
+        if (otherParticipant !== participant) {
+          const otherKey = otherParticipant.replace(/\./g, '_');
+          await User.updateOne(
+            { email: participant, 'friends.email': otherParticipant },
+            { $inc: { 'friends.$.balance': participant === email ? balanceUpdate : -balanceUpdate } }
+          );
+        }
+      }
+
+      console.log(`Updated balance and activities for participant: ${participant}`);
+    });
+
+    await Promise.all(updates);
+
+    res.json("success");
+  } catch (e) {
+    console.error('Error adding expense:', e);
+    res.json("error");
+  }
+});
+
+
+
+
+
+app.post("/getActivities", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email }).populate('activities');
+    console.log('User:', user); // Verify user details
+    console.log('User activities:', user.activities); // Verify activities associated with the user
+
+    const activitiesWithNames = await Promise.all(user.activities.map(async (activity) => {
+      const participantsWithNames = await Promise.all(activity.participants.map(async (participantEmail) => {
+        const participant = await User.findOne({ email: participantEmail });
+        if (!participant) {
+          console.log(`Participant not found for email: ${participantEmail}`);
+          return { email: participantEmail, name: 'Unknown', owedAmount: activity.customShares[participantEmail] || (activity.amount / activity.participants.length) };
+        }
+        return { email: participant.email, name: participant.name, owedAmount: activity.customShares[participantEmail] || (activity.amount / activity.participants.length) };
+      }));
+
+      const createdByUser = await User.findOne({ email: activity.createdBy });
+      let groupName = '';
+      if (activity.groupName) {
+        const group = await Group.findOne({ name: activity.groupName });
+        groupName = group ? group.name : '';
+      }
+
+      return {
+        ...activity._doc,
+        participants: participantsWithNames,
+        createdByName: createdByUser ? createdByUser.name : activity.createdBy,
+        groupName
+      };
+    }));
+
+    console.log('Activities with names:', activitiesWithNames); // Verify activities with names
+
+    res.json({ activities: activitiesWithNames });
+  } catch (e) {
+    console.error(e);
+    res.json({ activities: [] });
+  }
+});
+
+
 
 app.listen(8000, () => {
   console.log("Server running on port 8000");

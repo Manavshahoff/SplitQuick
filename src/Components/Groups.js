@@ -51,24 +51,27 @@ function Groups() {
           {groups.map(renderItem)}
         </div>
       </div>
+      <button className="fab" onClick={() => navigate("/expenseselection", { state: { email } })}>
+        <span className="fab-text">+</span>
+      </button>
       <div className="footer">
-        <Link to="/friends" className="footer-item">
-          <Avatar iconType="user" />
-          <span>Friends</span>
-        </Link>
-        <Link to="/groups" className="footer-item">
-          <Avatar iconType="group" />
-          <span>Groups</span>
-        </Link>
-        <Link to="/profile" className="footer-item">
-          <Avatar iconType="profile" />
-          <span>Profile</span>
-        </Link>
-        <Link to="/activity" className="footer-item">
-          <Avatar iconType="activity" />
-          <span>Activity</span>
-        </Link>
-      </div>
+              <Link to="/friends" className="footer-item">
+                  <Avatar iconType="user" />
+                  <span>Friends</span>
+              </Link>
+              <Link to="/groups" className="footer-item">
+                  <Avatar iconType="group" />
+                  <span>Groups</span>
+              </Link>
+              <Link to="/profile" className="footer-item">
+                  <Avatar iconType="profile" />
+                  <span>Profile</span>
+              </Link>
+              <Link to="/activity" className="footer-item">
+                  <Avatar iconType="activity" />
+                  <span>Activity</span>
+              </Link>
+          </div>
     </div>
   );
 }

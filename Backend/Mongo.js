@@ -23,11 +23,16 @@ const userSchema = new mongoose.Schema({
   },
   friends: [{
     name: String,
-    email: String
+    email: String,
+    balance: Number
   }],
   groups: [{
     name: String,
     members: [String] // Array of email addresses
+  }],
+  activities: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Expense'
   }]
 });
 
@@ -43,10 +48,48 @@ const groupSchema = new mongoose.Schema({
   members: [{
     name: String,
     email: String
+  }],
+  activities: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Expense'
   }]
+});
+
+const expenseSchema = new mongoose.Schema({
+  expenseName: {
+    type: String,
+    required: true
+  },
+  amount: {
+    type: Number,
+    required: true
+  },
+  createdBy: {
+    type: String,
+    required: true
+  },
+  participants: [String], // Array of email addresses
+  splitMethod: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  groupName: {
+    type: String,
+    default: null // Add default null value for groupName
+  },
+  customShares: {
+    type: Map,
+    of: Number,
+    default: {}
+  }
 });
 
 const User = mongoose.model("User", userSchema);
 const Group = mongoose.model("Group", groupSchema);
+const Expense = mongoose.model("Expense", expenseSchema);
 
-module.exports = { User, Group };
+module.exports = { User, Group, Expense };

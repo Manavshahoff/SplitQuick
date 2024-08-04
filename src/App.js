@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { SplitMethodProvider } from './Components/SplitMethodContext';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Friends from './Components/Friends';
@@ -9,11 +10,18 @@ import CreateGroup from './Components/CreateGroup';
 import AddMembersToGroup from './Components/AddMembersToGroup';
 import ExpenseSelection from './Components/ExpenseSelection';
 import AddExpense from './Components/AddExpense';
+import SelectSplitMethod from './Components/SelectSplitMethod';
+import MultipleSplitOptions from './Components/MultipleSplitOptions';
+import Profile from './Components/Profile';
+import Activity from './Components/Activity';
+import ActivityDetails from "./Components/ActivityDetails";
+import CustomSplit from './Components/CustomSplit';
 import './App.css';
 
 function App() {
   return (
     <Router>
+      <SplitMethodProvider>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -25,7 +33,14 @@ function App() {
         <Route path="/addmemberstogroup" element={<AddMembersToGroup />} />
         <Route path="/expenseselection" element={<ExpenseSelection />} />
         <Route path="/addexpense" element={<AddExpense />} />
+        <Route path="/selectsplitmethod" element={<SelectSplitMethod />} />
+        <Route path="/multiplesplitoptions" element={<MultipleSplitOptions />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/activity" element={<Activity />} />
+        <Route path="/activitydetails" element={<ActivityDetails />}/>
+        <Route path="/customsplit" element={<CustomSplit/>}/>
       </Routes>
+      </SplitMethodProvider>
     </Router>
   );
 }

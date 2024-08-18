@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SplitQuick/static/css/main.514c4ef0.css",
+    "main.js": "/SplitQuick/static/js/main.062bad75.js",
+    "index.html": "/SplitQuick/index.html",
+    "main.514c4ef0.css.map": "/SplitQuick/static/css/main.514c4ef0.css.map",
+    "main.062bad75.js.map": "/SplitQuick/static/js/main.062bad75.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.514c4ef0.css",
+    "static/js/main.062bad75.js"
+  ]
+}

@@ -214,9 +214,9 @@ app.post("/addExpense", async (req, res) => {
         { email: participant },
         {
           $push: { activities: expense._id },
-          // $inc: { 'friends.$[friend].balance': balanceUpdate },
+          //$inc: { 'friends.$[friend].balance': participant === payer ? balanceUpdate * (totalParticipants - 1) : -balanceUpdate }
         },
-        // { arrayFilters: [{ 'friend.email': email }] }
+        //{ arrayFilters: [{ 'friend.email': participant === payer ? email : participant }] }
       );
 
       for (const otherParticipant of uniqueParticipants) {

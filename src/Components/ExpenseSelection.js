@@ -10,6 +10,7 @@ function ExpenseSelection() {
   const location = useLocation();
   const navigate = useNavigate();
   const email = location.state?.email || localStorage.getItem('email');
+  const name = location.state?.name || localStorage.getItem('name');
 
   useEffect(() => {
     async function fetchData() {
@@ -52,12 +53,14 @@ function ExpenseSelection() {
     console.log('Submitting with selected groups:', selectedGroups);
     if (selectedFriends.length > 0 || selectedGroups.length > 0) {
       navigate("/addexpense", {
-        state: { email, selectedFriends, selectedGroups }
+        state: { email, selectedFriends, selectedGroups, name }
       });
     } else {
       alert("Please select at least one friend or group.");
     }
   };
+
+ 
 
   return (
     <div className="expense-selection-container">

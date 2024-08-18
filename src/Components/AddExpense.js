@@ -5,10 +5,13 @@ import axios from 'axios';
 function AddExpense() {
   const [expenseName, setExpenseName] = useState('');
   const [amount, setAmount] = useState('');
-  const [splitMethod, setSplitMethod] = useState('Paid by you and split equally');
+  const [splitMethod, setSplitMethod] = useState('equally');
   const location = useLocation();
   const navigate = useNavigate();
-  const { email, selectedFriends, selectedGroups, customShares, friendsData } = location.state || {};
+  const { name, email, selectedFriends, selectedGroups, customShares, friendsData, payer } = location.state || {};
+  const [selectedPayer] = useState(payer || { name: 'You', email });
+
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +25,8 @@ function AddExpense() {
         selectedGroups,
         splitMethod,
         customShares,
-      });
+        payer: selectedPayer.email
+    });
       alert("Expense added successfully");
       navigate("/activity", { state: { email } });
     } catch (e) {
@@ -31,12 +35,14 @@ function AddExpense() {
     }
   };
   
-
+  const handleSelectPayer = () => {
+    navigate("/selectpayer", { state: { name, email, selectedFriends, payer:selectedPayer  } });
+  };
   const handleSplitMethodChange = () => {
     if (selectedFriends.length > 1 || selectedGroups.length > 0) {
-      navigate("/customsplit", { state: { email, selectedFriends, selectedGroups, customShares, friendsData } });
+      navigate("/customsplit", { state: { name, email, selectedFriends, selectedGroups, customShares, friendsData } });
     } else {
-      setSplitMethod("Paid by you and split equally");
+      setSplitMethod("equally");
     }
   };
 
@@ -67,8 +73,8 @@ function AddExpense() {
             required
           />
         </div>
-        <div className="split-method" onClick={handleSplitMethodChange}>
-          {splitMethod}
+        <div className="split-method">
+        Paid by <span className="split-method-payer-custom" onClick={handleSelectPayer}>{selectedPayer.name}</span> and split <span className="split-method-payer-custom" onClick={handleSplitMethodChange}>equally</span>
         </div>
         <button type="submit">Add Expense</button>
       </form>

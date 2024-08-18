@@ -16,6 +16,7 @@ import Profile from './Components/Profile';
 import Activity from './Components/Activity';
 import ActivityDetails from "./Components/ActivityDetails";
 import CustomSplit from './Components/CustomSplit';
+import SelectPayer from './Components/SelectPayer';
 import './App.css';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/activity" element={<Activity />} />
         <Route path="/activitydetails" element={<ActivityDetails />}/>
         <Route path="/customsplit" element={<CustomSplit/>}/>
+        <Route path="/selectpayer" element={<SelectPayer/>}/>
       </Routes>
       </SplitMethodProvider>
     </Router>

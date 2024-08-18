@@ -65,7 +65,7 @@ function CustomSplit() {
           <h2>Custom Share Values</h2>
           {selectedFriends.map((friend) => (
             <div key={friend.email} className="form-group">
-              <label htmlFor={`share-${friend.email}`}>{friend.name}</label>
+              <label htmlFor={`share-${friend.email}`}>{friend.email}</label>
               <input
                 type="number"
                 id={`share-${friend.email}`}

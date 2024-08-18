@@ -515,10 +515,18 @@ button[type="submit"]:hover {
 .split-method {
   text-align: center;
   color: black;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.split-method-payer-custom{
+  text-align: center;
+  color: black;
   text-decoration: underline;
   cursor: pointer;
   margin-top: 5px;
   margin-bottom: 5px;
+
 }
 
 .options {

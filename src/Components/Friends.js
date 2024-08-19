@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import Avatar from './Avatar';
@@ -12,18 +12,18 @@ function Friends() {
   const email = location.state?.email || localStorage.getItem('email');
   const name = location.state?.name || localStorage.getItem('name');
 
-  const fetchFriends = async () => {
+  const fetchFriends = useCallback(async () => {
     try {
       const response = await axios.post("http://localhost:8000/getFriends", { email });
       setFriends(response.data.friends);
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [email]);
 
   useEffect(() => {
     fetchFriends();
-  }, [email]);
+  }, [fetchFriends]);
 
   const handleSearch = (e) => {
     const value = e.target.value;

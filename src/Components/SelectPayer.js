@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function SelectPayer() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { name, email, selectedFriends, payer } = location.state || {};
+  const { email, selectedFriends, payer } = location.state || {};
 
   // Initialize selectedPayer with the payer if provided, else default to 'You'
   const [selectedPayer, setSelectedPayer] = useState(payer || { name: 'You', email: email });

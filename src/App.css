@@ -1,0 +1,826 @@
+/* General Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main container for components */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Header styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: black;
+  border-radius: 10px;
+}
+
+.header-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Search container styling */
+.search-container {
+  padding: 20px;
+  align-self: center;
+}
+
+.search-input {
+  height: 40px;
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+  background: linear-gradient(90deg, #5de0d6, #004aad);
+}
+
+/* Content area to fill remaining space */
+.content {
+  flex: 1;
+}
+
+/* List of friends or group members */
+.list {
+  flex: 1;
+}
+
+/* Individual item styling */
+.item-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Avatar styling */
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4a90e2;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Icon styling */
+.icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Summary section styling */
+.summary {
+  display: flex;
+  align-items: center;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.name {
+  flex: 1;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.amount-owe {
+  font-size: 18px;
+  color: green;
+}
+
+.amount-owed {
+  font-size: 18px;
+  color: red;
+}
+
+/* Add friend and Group button styling */
+.add {
+  font-size: 18px;
+  color: #4a90e2;
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px;
+}
+
+.add:hover {
+  background-color: #4a90e2;
+  color: white;
+}
+
+/* Floating action button styling */
+.fab {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  background: linear-gradient(to right, #a8e063, #56ab2f);
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.fab-text {
+  color: #fff;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+/* Footer styling */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%;
+  background: linear-gradient(90deg, #5de0d6, #004aad);
+  position: fixed;
+  bottom: 0;
+  height: 60px; /* Fixed height to ensure consistent layout */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for separation */
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Form container styling for login and signup pages */
+.form-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: linear-gradient(90deg, #5de0d6, #004aad);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-group input {
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.Loginbutton, .signupbutton {
+  background: #56ab2f; 
+  background: -webkit-linear-gradient(to right, #a8e063, #56ab2f); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 50%;
+  align-self: center;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+a {
+  color: #50fa7b;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Suggestions list styling */
+.suggestions-list {
+  border: 1px solid #ccc;
+  background-color: white;
+  position: absolute;
+  z-index: 1000;
+  width: 95%;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Group Details Page Specific Styles */
+.group-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.group-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.back-button {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.group-name {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.no-expenses {
+  color: #888;
+}
+
+.group-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.group-button {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.group-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.add-members-button .icon, .share-link-button .icon {
+  margin-right: 5px;
+}
+
+.group-footer {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(90deg, #5de0d6, #004aad);
+  padding: 10px 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.footer-item span {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.add-members-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.fab {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  background: linear-gradient(to right, #a8e063, #56ab2f);
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.fab-text {
+  color: #fff;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+/* Style the main container */
+.expense-selection-container {
+  max-width: 500px; /* Consistent width with the AddExpense page */
+  margin: 100px auto;
+  padding: 20px;
+  background: linear-gradient(90deg, #5de0d6, #004aad); /* Gradient background */
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.expense-selection-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.expense-header {
+  margin-bottom: 20px;
+}
+
+/* Style the list of friends and groups */
+.list {
+  margin-bottom: 20px;
+}
+
+.list h2 {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Checkbox container styling */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+
+/* Form-like styles */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+button[type="submit"] {
+  background: #4a90e2;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 0px;
+  cursor: pointer;
+  width: 100%;
+  align-self: center;
+}
+
+button[type="submit"]:hover {
+  background: #3a78c2;
+}
+
+
+/* Styling for round checkboxes */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.round-checkbox {
+  display: none;
+}
+
+.round-checkbox + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  line-height: 20px;
+  user-select: none;
+}
+
+.round-checkbox + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #4a90e2;
+}
+
+.round-checkbox:checked + label:before {
+  background: #4a90e2;
+  border-color: #4a90e2;
+}
+
+.round-checkbox:checked + label:after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+.split-method {
+  text-align: center;
+  color: black;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.split-method-payer-custom{
+  text-align: center;
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.option {
+  padding: 10px 20px;
+  margin: 10px 0;
+  background: #4a90e2;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.option:hover {
+  background: #3a78c2;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+button[type="submit"] {
+  background: #4a90e2;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 50%;
+  align-self: center;
+}
+
+button[type="submit"]:hover {
+  background: #3a78c2;
+}
+
+/* Container for the activity log */
+.activity-log-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* List of activities */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual activity item */
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+/* Remove border for the last item */
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+/* Change background color on hover */
+.activity-item:hover {
+  background-color: #f9f9f9;
+}
+
+/* Name of the activity */
+.activity-name, .activity-date, .activity-amount {
+  flex: 1;
+  text-align: center;
+}
+
+/* Make the activity name take up more space */
+.activity-name {
+  flex: 2;
+}
+
+/* Add some additional padding for better spacing */
+.activity-item span {
+  padding: 0 10px;
+}
+
+/* Container for activity details */
+.activity-details-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Details section */
+.activity-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* List of participants */
+.activity-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-details li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.activity-details li:last-child {
+  border-bottom: none;
+}
+
+/* Strong elements for labels */
+.activity-details strong {
+  display: inline-block;
+  width: 150px;
+}
+
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.option {
+  padding: 10px 20px;
+  margin: 10px 0;
+  background: #4a90e2;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.option:hover {
+  background: #3a78c2;
+}
+
+.participants {
+  margin-top: 20px;
+}
+
+.participant-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.participant-checkbox input {
+  margin-right: 10px;
+}
+
+/* Profile Page Styles */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-header h1 {
+  margin: 10px 0 5px 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-header p {
+  font-size: 16px;
+  color: #666;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-info {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.profile-info h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.profile-info p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.signout-button {
+  background: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+.signout-button:hover {
+  background: #c0392b;
+}
+
+/* Ensure that footer stays at the bottom */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.expenseselection{
+  align-self: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: none;
+  outline: none;
+}
+
+.tab.active {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+/* Add these styles to your CSS file */
+

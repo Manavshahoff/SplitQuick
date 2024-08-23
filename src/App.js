@@ -21,7 +21,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename='/SplitQuick'>
       <SplitMethodProvider>
       <Routes>
         <Route path="/" element={<Login />} />

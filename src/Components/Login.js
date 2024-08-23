@@ -11,7 +11,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8000/", {
+      await axios.post("https://nodejs-serverless-function-express-e1sne2qsq.vercel.app/api/login", {
         email,
         password
       })

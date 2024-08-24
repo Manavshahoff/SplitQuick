@@ -43,7 +43,7 @@ function AddMembersToGroup() {
 
   const handleAddFriendToGroup = async (friend) => {
     try {
-      const response = await axios.post("http://localhost:8000/addMemberToGroup", {
+      const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/addMemberToGroup", {
         userEmail: email,
         groupName: group.name,
         memberEmail: friend.email

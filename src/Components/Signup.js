@@ -13,7 +13,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/signup", {
+      await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/signup", {
         name,
         email,
         password

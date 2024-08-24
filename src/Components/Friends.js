@@ -14,7 +14,7 @@ function Friends() {
 
   const fetchFriends = useCallback(async () => {
     try {
-      const response = await axios.post("http://localhost:8000/getFriends", { email });
+      const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/getFriends", { email });
       setFriends(response.data.friends);
     } catch (e) {
       console.log(e);

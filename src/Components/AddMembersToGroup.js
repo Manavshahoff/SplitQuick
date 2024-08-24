@@ -18,7 +18,8 @@ function AddMembersToGroup() {
         const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/getFriends", {
           email: email
         });
-        setFriends(response.data.friends);
+        console.log(response.data.friends);  // Check what you're receiving
+        setFriends(response.data.friends || []);
       } catch (e) {
         console.log(e);
       }
@@ -31,7 +32,7 @@ function AddMembersToGroup() {
     const value = e.target.value;
     setSearchInput(value);
 
-    if (value.length > 0) {
+    if (value.length > 0 && friends && friends.length > 0) {
       const filteredSuggestions = friends.filter(friend =>
         friend.name.toLowerCase().startsWith(value.toLowerCase())
       );

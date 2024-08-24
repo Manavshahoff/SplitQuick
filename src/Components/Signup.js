@@ -13,7 +13,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      await axios.post("https://nodejs-serverless-function-express-603xlm9o8.vercel.app/signup", {
+      await axios.post("https://nodejs-serverless-function-express-603xlm9o8.vercel.app/api/signup", {
         name,
         email,
         password

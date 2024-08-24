@@ -160,7 +160,7 @@ html, body {
   align-items: center;
   padding: 10px 0;
   width: 100%;
-  background: linear-gradient(90deg, #5de0d6, #004aad);
+  background: #004aad;
   position: fixed;
   bottom: 0;
   height: 60px; /* Fixed height to ensure consistent layout */

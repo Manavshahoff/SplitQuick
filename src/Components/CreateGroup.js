@@ -12,7 +12,7 @@ function CreateGroup() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/createGroup", {
+      const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/createGroup", {
         groupName,
         email
       });

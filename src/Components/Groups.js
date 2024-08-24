@@ -13,7 +13,7 @@ function Groups() {
   useEffect(() => {
     async function fetchGroups() {
       try {
-        const response = await axios.post("http://localhost:8000/getGroups", {
+        const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/getGroups", {
           email: email
         });
         setGroups(response.data.groups);

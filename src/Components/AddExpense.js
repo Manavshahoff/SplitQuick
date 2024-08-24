@@ -17,7 +17,7 @@ function AddExpense() {
     e.preventDefault();
     try {
       console.log("Selected Friends:", selectedFriends); // Debugging: log selected friends
-      await axios.post("http://localhost:8000/addExpense", {
+      await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/addExpense", {
         email,
         expenseName,
         amount,

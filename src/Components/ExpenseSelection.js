@@ -15,10 +15,10 @@ function ExpenseSelection() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const friendsResponse = await axios.post("http://localhost:8000/getFriends", { email });
+        const friendsResponse = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/getFriends", { email });
         setFriends(friendsResponse.data.friends);
 
-        const groupsResponse = await axios.post("http://localhost:8000/getGroups", { email });
+        const groupsResponse = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/getGroups", { email });
         setGroups(groupsResponse.data.groups);
       } catch (e) {
         console.log("Error fetching data:", e);

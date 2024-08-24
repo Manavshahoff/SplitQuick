@@ -20,7 +20,7 @@ function AddFriend() {
       });
 
     try {
-      const response = await axios.post("http://localhost:8000/addFriend", {
+      const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/addFriend", {
         userEmail: email,
         friendName,
         friendNumber,

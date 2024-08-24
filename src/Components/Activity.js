@@ -12,7 +12,7 @@ function Activity() {
   useEffect(() => {
     async function fetchActivities() {
       try {
-        const response = await axios.post("http://localhost:8000/getActivities", { email });
+        const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/activity", { email });
         if (response.data && response.data.activities) {
           setActivities(response.data.activities);
         }

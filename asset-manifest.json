@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/SplitQuick/static/css/main.514c4ef0.css",
+    "main.css": "/SplitQuick/static/css/main.cc1b1577.css",
     "main.js": "/SplitQuick/static/js/main.0a587ced.js",
     "static/media/User2.png": "/SplitQuick/static/media/User2.6531c3e7db3b59b9919e.png",
     "index.html": "/SplitQuick/index.html",
-    "main.514c4ef0.css.map": "/SplitQuick/static/css/main.514c4ef0.css.map",
+    "main.cc1b1577.css.map": "/SplitQuick/static/css/main.cc1b1577.css.map",
     "main.0a587ced.js.map": "/SplitQuick/static/js/main.0a587ced.js.map"
   },
   "entrypoints": [
-    "static/css/main.514c4ef0.css",
+    "static/css/main.cc1b1577.css",
     "static/js/main.0a587ced.js"
   ]
 }

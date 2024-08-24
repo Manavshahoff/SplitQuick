@@ -15,7 +15,7 @@ function AddMembersToGroup() {
   useEffect(() => {
     async function fetchFriends() {
       try {
-        const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/addMemberToGroup", {
+        const response = await axios.post("https://nodejs-serverless-function-express-tan-theta.vercel.app/api/getFriends", {
           email: email
         });
         setFriends(response.data.friends);

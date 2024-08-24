@@ -1,7 +1,7 @@
 import React from 'react';
 import profileIcon from '../Icons/User-profile.png';
 import groupIcon from '../Icons/Group-user.png';
-import userIcon from '../Icons/User1.png'; 
+import userIcon from '../Icons/User2.png'; 
 import activityIcon from '../Icons/Activity.png'; 
 
 
